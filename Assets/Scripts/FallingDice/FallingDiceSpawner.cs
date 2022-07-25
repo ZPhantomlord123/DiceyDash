@@ -12,7 +12,7 @@ public class FallingDiceSpawner : MonoBehaviour
         {
             var _instance = FallingDicePool._instance.GetDice();
             _instance.transform.position = new Vector2(Random.Range(-2.42f,2.42f),4.5f);
-            _instance.GetComponent<Rigidbody2D>().gravityScale = Random.Range(0.1f, 1.5f);
+            _instance.GetComponent<Rigidbody2D>().gravityScale = Random.Range(0.1f, 1.3f);
             StartCoroutine(Delay());
         }
         

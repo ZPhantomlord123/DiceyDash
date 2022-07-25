@@ -13,6 +13,7 @@ public class FallingDiceCollisions : MonoBehaviour
         }
         if(collision.gameObject.layer == 8)
         {
+            this.gameObject.GetComponent<FallingDiceNoToggle>().RandomNumber();
             this.gameObject.SetActive(false);
         }
     }

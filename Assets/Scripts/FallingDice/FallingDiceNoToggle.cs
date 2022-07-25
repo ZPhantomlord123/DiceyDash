@@ -5,28 +5,40 @@ using UnityEngine;
 public class FallingDiceNoToggle : MonoBehaviour
 {
 
-    private static int _diceNumber = 1;
+    public int _diceNumber = 1;
     public Sprite[] _diceSprites;
     private SpriteRenderer _diceSpriteRenderer;
     private bool _switchActive = false;
+    private int _randomNo = 1;
+    private int _tempNo=1;
 
     private void Awake()
     {
         _diceSpriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
-        _diceSpriteRenderer.sprite = _diceSprites[0];
+        _randomNo = 1;
+        _diceNumber = 1;
+        RandomNumber();
     }
 
     public void RandomNumber()
     {
         StartCoroutine(PlayParticleSystem());
-        var _randomNo = Random.Range(1, 7);
+        _randomNo = RandomRangeExcept(_tempNo);
         _diceNumber = _randomNo;
         _diceSpriteRenderer.sprite = _diceSprites[_randomNo-1];
     }
+
+    private int RandomRangeExcept(int except)
+    {
+        int number;
+        do
+        {
+            number = Random.Range(1, 7);
+        } while (number == except);
+        _tempNo = number;
+        return number;
+    }
+    
 
     IEnumerator PlayParticleSystem()
     {
@@ -35,13 +47,6 @@ public class FallingDiceNoToggle : MonoBehaviour
         _switchActive = false;
     }
 
-    private void Update()
-    {
-        if (!_switchActive)
-        {
-            RandomNumber();
-        }
-    }
     public int GetDiceNo()
     {
         return _diceNumber;

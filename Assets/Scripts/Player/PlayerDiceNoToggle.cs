@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDiceNoToggle : MonoBehaviour
 {
     
-    private static int _diceNumber = 1;
+    private int _diceNumber = 1;
     public Sprite[] _diceSprites;
     private SpriteRenderer _diceSpriteRenderer;
     private bool _switchActive = false;
@@ -33,7 +33,6 @@ public class PlayerDiceNoToggle : MonoBehaviour
             _diceNumber = 1;
             _diceSpriteRenderer.sprite = _diceSprites[0];
         }
-        print(_diceNumber);
     }
 
     public void DecrementNumber()
@@ -49,13 +48,12 @@ public class PlayerDiceNoToggle : MonoBehaviour
             _diceNumber = 6;
             _diceSpriteRenderer.sprite = _diceSprites[5];
         }
-        print(_diceNumber);
     }
 
     IEnumerator PlayParticleSystem()
     {
         _switchActive = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         _switchActive = false;
     }
 
